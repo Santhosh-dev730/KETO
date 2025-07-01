@@ -3,6 +3,7 @@ import Navbar from '../Navbar.jsx';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import AdminNavbar from './AdminNavbar.jsx';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -42,9 +43,9 @@ const AdminLogin = () => {
   return (
     <div>
       <ToastContainer position="top-center" autoClose={2000} />
-      <Navbar />
-      <hr />
-      <div className="container is-fluid">
+      <AdminNavbar/>
+      {/* <hr /> */}
+      <div className="container is-fluid mt-5">
         <div className="box" style={{ marginLeft: "220px", marginRight: "150px" }}>
           <div className="columns is-centered">
             <div className="column is-5">
@@ -57,12 +58,6 @@ const AdminLogin = () => {
             <div className="column is-5">
               <div className="block">
                 <span className="icon-text">
-                  <span className="icon is-medium mr-2">
-                    <img
-                      src="https://img.icons8.com/fluency/48/000000/meta.png"
-                      alt="meta"
-                    />
-                  </span>
                   <span className="is-size-5 has-text-weight-medium mt-1">KETO</span>
                 </span>
               </div>

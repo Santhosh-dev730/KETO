@@ -3,6 +3,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link, useNavigate } from 'react-router-dom';
+import AdminNavbar from './AdminNavbar'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -133,35 +134,7 @@ const Home = () => {
     <div>
       <ToastContainer position="top-center" autoClose={2000} />
 
-      <nav className="navbar is-dark" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-          <span className="navbar-item has-text-weight-bold is-size-5 has-text-white">KETO</span>
-        </div>
-        <div className="navbar-menu">
-          <div className="navbar-start">
-            <span className="navbar-item">Products</span>
-            <Link to="/AdminOrder" className="navbar-item">Orders</Link>
-            <Link to="/AdminUser" className="navbar-item">Users</Link>
-          </div>
-          <div className="navbar-end">
-            <div className="navbar-item has-text-white mr-4">
-              <span>Welcome, <strong className='has-text-white'>Admin</strong></span>
-            </div>
-            <div className="navbar-item">
-              <button
-                className="button is-light"
-                onClick={() => {
-                  localStorage.removeItem("adminAuth");
-                  toast.success("Logged out successfully");
-                  setTimeout(() => navigate("/AdminLogin"), 1000);
-                }}
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+       <AdminNavbar />
 
       <div className="container is-fluid mt-4">
         <div className="columns">

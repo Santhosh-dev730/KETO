@@ -25,7 +25,7 @@ const Navbar = () => {
           <div className="container">
             <div className="navbar-brand">
               <Link to="/" className="navbar-item">
-                <strong className="ml-2">KETO</strong>
+                <strong className="ml-2 title is-4">KETO</strong>
               </Link>
 
               <button className="navbar-burger" id="burger" aria-label="menu" aria-expanded="false">
