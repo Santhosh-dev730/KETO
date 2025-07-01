@@ -1,0 +1,66 @@
+.star {
+      color: #ffc107; 
+    }
+
+    .card_img,
+.qr_code {
+  width: 60px;
+  height: auto;
+}
+
+.save_card,
+.new_address {
+  cursor: pointer;
+}
+
+.steps-hyphen {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.step-item {
+  color: #999;
+}
+
+.step-item.is-active {
+  color: #3273dc;
+  font-weight: 600;
+}
+
+.step-separator {
+  margin: 0 8px;
+  color: #666;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.step-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  font-weight: bold;
+  background-color: #ccc;
+  transition: background-color 0.3s;
+}
+
+.step-button.current {
+  background-color: #209cee;
+  color: white;
+}
+
+.step-button.done {
+  background-color: #23d160;
+  color: white;
+}
+
+.step-line {
+  width: 50px;
+  height: 2px;
+  background-color: #ccc;
+  margin: 0 10px;
+}
