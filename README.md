@@ -1,4 +1,4 @@
-# 📱 Keto - E-commerce Admin and User Management System
+# Keto - E-commerce Admin and User Management System
 
 Keto is a full-stack e-commerce application designed for managing and purchasing electronic devices such as smartphones and tablets. It includes powerful admin tools and a smooth shopping experience for users.
 
