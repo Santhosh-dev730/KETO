@@ -86,9 +86,6 @@ const Register = () => {
 
               <div className="block">
                 <span className="icon-text">
-                  <span className="icon is-medium mr-2">
-                    <img src="https://img.icons8.com/fluency/48/000000/meta.png" alt="meta" />
-                  </span>
                   <span className="is-size-5 has-text-weight-medium mt-1">KETO</span>
                 </span>
               </div>
