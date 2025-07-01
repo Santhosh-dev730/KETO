@@ -37,15 +37,14 @@ Keto is a full-stack e-commerce application designed for managing and purchasing
 
 ---
 
----
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- Node.js (v14+)
-- MongoDB (local or Atlas)
-- Git
+- React 
+- Node.js 
+- Express
+- MongoDB (local)
 
 ### Installation Steps
 
