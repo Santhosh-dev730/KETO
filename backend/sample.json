@@ -24,8 +24,9 @@
     "brand": "Apple",
     "category": "Smartphones",
     "image": "https://m.media-amazon.com/images/I/61nzPMNY8zL._SX679_.jpg",
-    "stock": 0,
-    "sold": 198
+    "stock": "250",
+    "sold": 198,
+    "imageName": "Existing Image"
   },
   {
     "id": 3,
@@ -38,8 +39,8 @@
     "brand": "Samsung",
     "category": "Tablets",
     "image": "https://rukminim2.flixcart.com/image/850/1000/xif0q/tablet/b/f/c/-original-imaguyff8pznbwne.jpeg?crop=false&q=90",
-    "stock": 62,
-    "sold": 31
+    "stock": 60,
+    "sold": 33
   },
   {
     "id": 4,
@@ -52,8 +53,8 @@
     "brand": "boAt",
     "category": "Bluetooth",
     "image": "https://rukminim3.flixcart.com/image/850/1000/ktszgy80/speaker/mobile-tablet-speaker/b/u/m/stone-1200f-boat-original-imag72dhvchsxmrz.jpeg?crop=false&q=90",
-    "stock": 120,
-    "sold": 56
+    "stock": 119,
+    "sold": 57
   },
   {
     "id": 5,
