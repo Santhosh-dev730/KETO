@@ -69,5 +69,15 @@ if (MONGO_URI) {
   console.warn("⚠️ MONGO_URL is not defined. Skipping MongoDB connection.");
 }
 
-// ✅ For Vercel export
+
+
+
+// MongoDB connection
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+})
+.then(() => console.log(" MongoDB connected"))
+.catch((err) => console.error("MongoDB connection failed:", err));
+
+
 module.exports = app;
