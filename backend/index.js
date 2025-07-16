@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 const favicon = require('serve-favicon');
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+
 
 const userRoutes = require('./routes/userRoute');
 const adminRoutes = require('./routes/adminRoute');
@@ -16,6 +16,8 @@ dotenv.config();
 
 
 const MONGO_URI = process.env.MONGO_URL;
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Allowed frontend origins
 const allowedOrigins = [
