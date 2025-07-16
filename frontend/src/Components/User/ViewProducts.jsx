@@ -13,7 +13,7 @@ const ViewProducts = () => {
   useEffect(() => {
     const getProductById = async () => {
       try {
-        const res = await axios.get(`http://localhost:7000/products/${id}`);
+        const res = await axios.get(`https://keto-13et.vercel.app/${id}`);
         setProduct(res.data);
       } catch (error) {
         console.error("Error fetching product:", error);

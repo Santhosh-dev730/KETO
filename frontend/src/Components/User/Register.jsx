@@ -40,7 +40,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('http://localhost:7000/register', {
+      const res = await axios.post('https://keto-13et.vercel.app/register', {
         username: form.username,
         email: form.email,
         password: form.password,
