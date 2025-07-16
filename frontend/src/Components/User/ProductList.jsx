@@ -7,7 +7,7 @@ const ProductList = () => {
 
   const getAllProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:7000/products"); 
+      const res = await axios.get("https://keto-13et.vercel.app/products"); 
       setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products:", error);
