@@ -12,9 +12,21 @@ const app = express();
 const PORT = process.env.PORT || 7000;
 const MONGO_URI = process.env.MONGO_URL;
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://keto-eta-eight.vercel.app/" 
+];
+
 
 app.use(cors({
-  origin: allowedOrigins,
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PATCH", "DELETE"],
   credentials: true
 }));
