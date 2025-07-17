@@ -4,19 +4,18 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const fs = require('fs');
 const path = require('path');
-const app = express();
 const favicon = require('serve-favicon');
-
 
 const userRoutes = require('./routes/userRoute');
 const adminRoutes = require('./routes/adminRoute');
 
-// Load environment variables
+const app = express();
 dotenv.config();
 
-
+// Get Mongo URI from environment
 const MONGO_URI = process.env.MONGO_URL;
 
+// Serve favicon
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 // Allowed frontend origins
@@ -38,9 +37,10 @@ app.use(cors({
   credentials: true
 }));
 
+// Body parser
 app.use(express.json());
 
-// ✅ Load sample.json
+// Load sample.json data
 const samplePath = path.join(__dirname, 'sample.json');
 let sampleData = [];
 
@@ -52,37 +52,51 @@ try {
   console.error("❌ Failed to load sample.json:", err.message);
 }
 
-// Routes
+// API routes
 app.use(userRoutes);
 app.use(adminRoutes);
 
-// ✅ API endpoint to return sample.json data
+// Sample API endpoint
 app.get("/api/sample", (req, res) => {
   res.json(sampleData);
 });
 
+// Root route
 app.get("/", (req, res) => {
   res.send("✅ API is running on Vercel!");
 });
 
-// ✅ Connect to MongoDB (only if MONGO_URI is defined)
-if (MONGO_URI) {
-  mongoose.connect(MONGO_URI)
-    .then(() => console.log("✅ MongoDB connected"))
-    .catch((err) => console.error("❌ MongoDB connection failed:", err));
-} else {
-  console.warn("⚠️ MONGO_URL is not defined. Skipping MongoDB connection.");
-}
+// Debug route to check MongoDB connection
+app.get("/ping-db", async (req, res) => {
+  try {
+    await mongoose.connection.db.admin().ping();
+    res.send("✅ MongoDB is reachable");
+  } catch (err) {
+    res.status(500).send("❌ Ping failed: " + err.message);
+  }
+});
 
+// MongoDB Connection Function
+const connectDB = async () => {
+  try {
+    if (!MONGO_URI) {
+      console.warn("⚠️ MONGO_URL is not defined. Skipping MongoDB connection.");
+      return;
+    }
 
+    await mongoose.connect(MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      serverSelectionTimeoutMS: 5000,
+    });
 
+    console.log("✅ MongoDB connected");
+  } catch (err) {
+    console.error("❌ MongoDB connection failed:", err.message);
+  }
+};
 
-// MongoDB connection
-mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-})
-.then(() => console.log(" MongoDB connected"))
-.catch((err) => console.error("MongoDB connection failed:", err));
-
+// Connect to DB
+connectDB();
 
 module.exports = app;
