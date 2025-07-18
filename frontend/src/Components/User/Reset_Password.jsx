@@ -13,7 +13,7 @@ const Reset_Password = () => {
     }
 
     try {
-      const response = await fetch('https://keto-13et.vercel.app/api/send-reset-email', {
+      const response = await fetch('https://keto-ja9n.vercel.app/api/send-reset-email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),

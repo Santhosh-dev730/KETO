@@ -21,7 +21,7 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 // Allowed frontend origins
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://keto-eta-eight.vercel.app"
+  "https://keto-ja9n.vercel.app"
 ];
 
 // CORS setup

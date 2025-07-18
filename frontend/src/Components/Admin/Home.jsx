@@ -25,7 +25,7 @@ const Home = () => {
 
   const getAllProducts = async () => {
     try {
-      const res = await axios.get("https://keto-13et.vercel.app/products");
+      const res = await axios.get("https://keto-ja9n.vercel.app/products");
       setProducts(res.data);
     } catch (error) {
       toast.error("Failed to fetch products");
