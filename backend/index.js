@@ -9,22 +9,23 @@ const favicon = require('serve-favicon');
 const userRoutes = require('./routes/userRoute');
 const adminRoutes = require('./routes/adminRoute');
 
-const app = express();
 dotenv.config();
 
-// Get Mongo URI from environment
+const app = express();
+
+// ✅ Get Mongo URI from environment
 const MONGO_URI = process.env.MONGO_URL;
 
-// Serve favicon
+// ✅ Serve favicon
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
-// Allowed frontend origins
+// ✅ Allowed frontend origins
 const allowedOrigins = [
   "http://localhost:5173",
   "https://keto-eta-eight.vercel.app"
 ];
 
-// CORS setup
+// ✅ CORS setup
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
@@ -37,10 +38,10 @@ app.use(cors({
   credentials: true
 }));
 
-// Body parser
+// ✅ Body parser
 app.use(express.json());
 
-// Load sample.json data
+// ✅ Load sample.json data
 const samplePath = path.join(__dirname, 'sample.json');
 let sampleData = [];
 
@@ -52,21 +53,21 @@ try {
   console.error("❌ Failed to load sample.json:", err.message);
 }
 
-// API routes
+// ✅ API routes
 app.use(userRoutes);
 app.use(adminRoutes);
 
-// Sample API endpoint
+// ✅ Sample API endpoint
 app.get("/api/sample", (req, res) => {
   res.json(sampleData);
 });
 
-// Root route
+// ✅ Root route
 app.get("/", (req, res) => {
   res.send("✅ API is running on Vercel!");
 });
 
-// Debug route to check MongoDB connection
+// ✅ Debug route to check MongoDB connection
 app.get("/ping-db", async (req, res) => {
   try {
     await mongoose.connection.db.admin().ping();
@@ -76,7 +77,7 @@ app.get("/ping-db", async (req, res) => {
   }
 });
 
-// MongoDB Connection Function
+// ✅ MongoDB Connection Function
 const connectDB = async () => {
   try {
     if (!MONGO_URI) {
@@ -87,11 +88,13 @@ const connectDB = async () => {
     await mongoose.connect(MONGO_URI)
     console.log("✅ MongoDB connected");
   } catch (err) {
-    console.error("MongoDB connection failed:", err.message);
+    console.error("❌ MongoDB connection failed:", err.message);
   }
 };
 
-// Connect to DB
+// ✅ Connect to DB
 connectDB();
 
+
+// ✅ Export app for serverless deployment or normal
 module.exports = app;
