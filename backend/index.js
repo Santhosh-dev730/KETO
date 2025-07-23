@@ -2,46 +2,21 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const fs = require('fs');
 const path = require('path');
-const favicon = require('serve-favicon');
-
-const userRoutes = require('./routes/userRoute');
-const adminRoutes = require('./routes/adminRoute');
+const fs = require('fs');
 
 dotenv.config();
 
 const app = express();
 
-// ✅ Get Mongo URI from environment
-const MONGO_URI = process.env.MONGO_URL;
+const PORT = process.env.PORT || 7000;
+const MONGO_URL = process.env.MONGO_URL;
 
-// ✅ Serve favicon
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
-// ✅ Allowed frontend origins
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://keto-eta-eight.vercel.app"
-];
-
-// ✅ CORS setup
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  methods: ["GET", "POST", "PATCH", "DELETE"],
-  credentials: true
-}));
-
-// ✅ Body parser
+// ✅ Middleware
+app.use(cors());
 app.use(express.json());
 
-// ✅ Load sample.json data
+// ✅ Load sample.json
 const samplePath = path.join(__dirname, 'sample.json');
 let sampleData = [];
 
@@ -53,48 +28,28 @@ try {
   console.error("❌ Failed to load sample.json:", err.message);
 }
 
-// ✅ API routes
-app.use(userRoutes);
-app.use(adminRoutes);
+// ✅ Routes
+app.get('/', (req, res) => {
+  res.send('🎉 Keto API running on Render!');
+});
 
-// ✅ Sample API endpoint
-app.get("/api/sample", (req, res) => {
+app.get('/api/sample', (req, res) => {
   res.json(sampleData);
 });
 
-// ✅ Root route
-app.get("/", (req, res) => {
-  res.send("✅ API is running on Vercel!");
-});
-
-// ✅ Debug route to check MongoDB connection
-app.get("/ping-db", async (req, res) => {
-  try {
-    await mongoose.connection.db.admin().ping();
-    res.send("✅ MongoDB is reachable");
-  } catch (err) {
-    res.status(500).send("❌ Ping failed: " + err.message);
-  }
-});
-
-// ✅ MongoDB Connection Function
+// ✅ Connect to MongoDB
 const connectDB = async () => {
   try {
-    if (!MONGO_URI) {
-      console.warn("⚠️ MONGO_URL is not defined. Skipping MongoDB connection.");
-      return;
-    }
-
-    await mongoose.connect(MONGO_URI)
-    console.log("✅ MongoDB connected");
-  } catch (err) {
-    console.error("❌ MongoDB connection failed:", err.message);
+    await mongoose.connect(MONGO_URL)
+    console.log('✅ Connected to MongoDB');
+  } catch (error) {
+    console.error('❌ MongoDB connection error:', error.message);
   }
 };
 
-// ✅ Connect to DB
 connectDB();
 
-
-// ✅ Export app for serverless deployment or normal
-module.exports = app;
+// ✅ Listen on port – This is required for Render to detect your app!
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
