@@ -7,7 +7,7 @@ const AdminOrder = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get('https://keto-ja9n.vercel.app/orders'); // Update the URL based on your backend
+        const res = await axios.get('https://keto-backend.onrender.com/orders'); // Update the URL based on your backend
         setOrders(res.data);
       } catch (error) {
         console.error('Error fetching orders:', error);

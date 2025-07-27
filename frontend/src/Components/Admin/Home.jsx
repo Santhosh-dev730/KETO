@@ -25,7 +25,7 @@ const Home = () => {
 
   const getAllProducts = async () => {
     try {
-      const res = await axios.get("https://keto-ja9n.vercel.app/products");
+      const res = await axios.get("https://keto-backend.onrender.com/products");
       setProducts(res.data);
     } catch (error) {
       toast.error("Failed to fetch products");
@@ -65,7 +65,7 @@ const Home = () => {
 
   const handleAddProduct = async () => {
     try {
-      await axios.post("https://keto-13et.vercel.app/products", formProduct);
+      await axios.post("https://keto-backend.onrender.com/products", formProduct);
       toast.success("Product added successfully!");
       closeModal();
       getAllProducts();
@@ -83,7 +83,7 @@ const Home = () => {
 
   const handleUpdateProduct = async () => {
     try {
-      await axios.patch(`https://keto-13et.vercel.app/products/${editingProductId}`, formProduct);
+      await axios.patch(`https://keto-backend.onrender.com/products/${editingProductId}`, formProduct);
       toast.success("Product updated successfully!");
       closeModal();
       getAllProducts();
@@ -111,7 +111,7 @@ const Home = () => {
   const handleDeleteProduct = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`https://keto-13et.vercel.app/products/${id}`);
+        await axios.delete(`https://keto-backend.onrender.com/products/${id}`);
         toast.success("Product deleted successfully!");
         getAllProducts();
       } catch (error) {
