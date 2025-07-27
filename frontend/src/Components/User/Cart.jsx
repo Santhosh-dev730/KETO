@@ -21,7 +21,7 @@ const Cart = () => {
     const fetchCartItems = async () => {
       const customerId = localStorage.getItem("customerId");
       try {
-        const res = await axios.get(`https://keto-backend.onrender.com/cart/${customerId}`);
+        const res = await axios.get(`https://keto-backend-two.vercel.app/cart/${customerId}`);
         setCartItems(res.data.productItems || []);
       } catch (error) {
         console.error("Failed to fetch cart items", error);
@@ -31,7 +31,7 @@ const Cart = () => {
     const fetchShippingAddress = async () => {
       const customerId = localStorage.getItem("customerId");
       try {
-        const res = await axios.get(`https://keto-backend.onrender.com/shipping/${customerId}`);
+        const res = await axios.get(`https://keto-backend-two.vercel.app/shipping/${customerId}`);
         setShippingAddress(res.data || {});
       } catch (error) {
         console.error("Failed to fetch shipping address", error);
@@ -47,7 +47,7 @@ const handleRemove = async (productId) => {
   if (!confirmDelete) return;
 
   try {
-    await axios.delete(`https://keto-backend.onrender.com/cart/${productId}`);
+    await axios.delete(`https://keto-backend-two.vercel.app/cart/${productId}`);
     setCartItems(prev => prev.filter(item => item.productId !== productId));
     alert("Item removed.");
   } catch (error) {
@@ -74,13 +74,13 @@ const handleRemove = async (productId) => {
       const shippingData = { ...formData, customerId };
       let response;
       if (shippingAddress._id) {
-        response = await axios.patch(`https://keto-backend.onrender.com/shipping/${shippingAddress._id}`, shippingData);
+        response = await axios.patch(`https://keto-backend-two.vercel.app/shipping/${shippingAddress._id}`, shippingData);
       } else {
-        response = await axios.post('https://keto-backend.onrender.com/shipping', shippingData);
+        response = await axios.post('https://keto-backend-two.vercel.app/shipping', shippingData);
       }
       alert(response.data.message || 'Shipping address saved successfully');
       setShowForm(false);
-      const res = await axios.get(`https://keto-backend.onrender.com//shipping/${customerId}`);
+      const res = await axios.get(`https://keto-backend-two.vercel.app/shipping/${customerId}`);
       setShippingAddress(res.data);
     } catch (err) {
       console.error('Error saving shipping address:', err);
@@ -104,7 +104,7 @@ const handleRemove = async (productId) => {
     };
 
     try {
-      await axios.post("https://keto-backend.onrender.com/order", orderData);
+      await axios.post("https://keto-backend-two.vercel.app/order", orderData);
       alert("Order placed successfully!");
       navigate("/order-success");
     } catch (err) {

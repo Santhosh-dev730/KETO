@@ -40,7 +40,7 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post('https://keto-backend.onrender.com/register', {
+      const res = await axios.post('https://keto-backend-two.vercel.app/register', {
         username: form.username,
         email: form.email,
         password: form.password,

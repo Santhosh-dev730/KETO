@@ -7,7 +7,7 @@ const ProductList = () => {
 
   const getAllProducts = async () => {
     try {
-      const res = await axios.get("https://keto-backend.onrender.com/products"); 
+      const res = await axios.get("https://keto-backend-two.vercel.app/products"); 
       setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products:", error);

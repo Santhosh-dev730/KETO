@@ -111,7 +111,7 @@ const AdminProduct = () => {
   const handleDeleteProduct = async (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`https://keto-backend.onrender.com/products/${id}`);
+        await axios.delete(`https://keto-backend-two.vercel.app/products/${id}`);
         toast.success("Product deleted successfully!");
         getAllProducts();
       } catch (error) {

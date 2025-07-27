@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     setError(''); // Reset error on each attempt
     try {
-      const res = await axios.post('https://keto-backend.onrender.com/login', form);
+      const res = await axios.post('https://keto-backend-two.vercel.app/login', form);
       alert(res.data.message);
       localStorage.setItem('loggedInUser', form.username);
       localStorage.setItem('customerId', res.data.customerId);

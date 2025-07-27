@@ -9,7 +9,7 @@ const AdminUser = () => {
 
   const getUsers = async () => {
     try {
-      const res = await axios.get('https://keto-backend.onrender.com/users');
+      const res = await axios.get('https://keto-backend-two.vercel.app/users');
       setUsers(res.data);
     } catch (error) {
       toast.error('Failed to fetch users');
